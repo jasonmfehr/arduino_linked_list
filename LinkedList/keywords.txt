@@ -1,0 +1,6 @@
+LinkedList	KEYWORD1
+addItem	KEYWORD2
+getValue	KEYWORD2
+numItems	KEYWORD2
+maintainIndex	KEYWORD2
+
