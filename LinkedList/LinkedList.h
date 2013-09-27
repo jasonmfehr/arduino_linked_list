@@ -29,7 +29,7 @@ and return the second item in the list.
 #ifndef LINKED_LIST
 #define LINKED_LIST
 
-#include "Arduino.h"
+#define NULL 0
 
 template <typename T>
 class LinkedList {
