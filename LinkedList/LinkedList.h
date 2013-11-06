@@ -22,7 +22,8 @@ in place to prevent reading more than the number of items in the list.
 For example, if a list has three items and the getValue() function is 
 called with a parameter of five, no errors will be thrown.  Since the 
 list tail is linked to the head, the iterator will simply wrap around 
-and return the second item in the list.
+and return the second item in the list.  The reason for the lack of 
+safeguards is to ensure the smallest footprint possible.
 */
 
 
@@ -40,6 +41,7 @@ class LinkedList {
     void addItem(T value);
     T getValue(int index);
     int numItems();
+    T* toArray();
   
   private:
     typedef struct LinkedListItem {
@@ -102,6 +104,26 @@ T LinkedList<T>::getValue(int index) {
 template <typename T>
 int LinkedList<T>::numItems() {
   return _numItems;
+}
+
+template <typename T>
+T* LinkedList<T>::toArray() {
+  T* newArr = new T[numItems()];
+  int idx = 0;
+  LinkedListItem* ptr;
+
+  if(_head != NULL){
+    ptr = _head;
+    newArr[idx] = _head->value;
+    ptr = _head->next;
+
+    while(ptr != _head){
+      newArr[++idx] = ptr->value;
+      ptr = ptr->next;
+    }
+  }
+
+  return newArr;
 }
 #endif
 
